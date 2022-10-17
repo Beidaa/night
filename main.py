@@ -6,7 +6,9 @@ from zhdate import ZhDate
 import sys
 import os
  
- 
+
+res = get('http://myip.ipip.net', timeout=5).text
+print(res)
 def get_color():
     # 获取随机颜色
     get_colors = lambda n: list(map(lambda i: "#" + "%06x" % random.randint(0, 0xFFFFFF), range(n)))
