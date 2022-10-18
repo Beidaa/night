@@ -183,10 +183,10 @@ def send_message(to_user, access_token, region_name, weather, temp, wind_dir,not
                 "value": note_en,
                 "color": get_color()
             },
-            "note_ch": {
-                "value": note_ch,
-                "color": get_color()
-            }
+            # "note_ch": {
+            #     "value": note_ch,
+            #     "color": get_color()
+            # }
         }
     }
     for key, value in birthdays.items():
