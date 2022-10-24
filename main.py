@@ -116,7 +116,7 @@ def get_birthday(birthday, year, today):
 #     note_ch = r.json()["note"]
 #     return note_ch, note_en
 def get_ciba():
-    url = "https://api.tianapi.com/tiangou/index?key=4bd63a1e9f1b96e518d2a9857359a3f1"
+    url = "http://api.tianapi.com/saylove/index?key=4bd63a1e9f1b96e518d2a9857359a3f1"
     headers = {
         'Content-Type': 'application/json',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
