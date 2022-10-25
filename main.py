@@ -505,5 +505,5 @@ if __name__ == "__main__":
     note_ch =get_marryme()
     # 公众号推送消息
     for user in users:
-        send_message(user, accessToken, region, sunset2,tempMax2,tempMin2,textDay2,windScaleDay2,uvIndex2,sunset1,tempMax1,tempMin1,textDay1,windScaleDay1,uvIndex1, note_ch)
+        send_message(user, accessToken, region, sunset1,tempMax1,tempMin1,textDay1,windScaleDay1,uvIndex1, note_ch)
     os.system("pause")
