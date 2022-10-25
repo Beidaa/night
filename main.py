@@ -144,7 +144,7 @@ def get_ciba():
     return  note_en
  
  
-def send_message(to_user, access_token, region_name, weather, temp, wind_dir,note_en,note_ch):
+def send_message(user, accessToken, region, sunset2,tempMax2,tempMin2,textDay2,windScaleDay2,uvIndex2,sunset1,tempMax1,tempMin1,textDay1,windScaleDay1,uvIndex1, note_ch):
     url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(access_token)
     week_list = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
     year = localtime().tm_year
@@ -165,7 +165,7 @@ def send_message(to_user, access_token, region_name, weather, temp, wind_dir,not
         if k[0:5] == "birth":
             birthdays[k] = v
     data = {
-        "touser": to_user,
+        "touser": user,
         "template_id": config["template_id"],
         "url": "http://weixin.qq.com/download",
         "topcolor": "#FF0000",
@@ -175,27 +175,59 @@ def send_message(to_user, access_token, region_name, weather, temp, wind_dir,not
                 "color": get_color()
             },
             "region": {
-                "value": region_name,
+                "value": region,
                 "color": get_color()
             },
-            "weather": {
-                "value": weather,
+            "sunset2": {
+                "value": sunset2,
                 "color": get_color()
             },
-            "temp": {
-                "value": temp,
+            "tempMax2": {
+                "value": tempMax2,
                 "color": get_color()
             },
-            "wind_dir": {
-                "value": wind_dir,
+            "tempMin2": {
+                "value": tempMin2,
+                "color": get_color()
+            },
+            "textDay2": {
+                "value": textDay2,
+                "color": get_color()
+            },
+            "windScaleDay2": {
+                "value": windScaleDay2,
+                "color": get_color()
+            },
+            "uvIndex2": {
+                "value": uvIndex2,
+                "color": get_color()
+            },
+            "sunset1": {
+                "value": sunset1,
+                "color": get_color()
+            },
+            "tempMax1": {
+                "value": tempMax1,
+                "color": get_color()
+            },
+            "tempMin1": {
+                "value": tempMin1,
+                "color": get_color()
+            },
+            "textDay1": {
+                "value": textDay1,
+                "color": get_color()
+            },
+            "windScaleDay1": {
+                "value": windScaleDay1,
+                "color": get_color()
+            },
+            "uvIndex1": {
+                "value": uvIndex1,
                 "color": get_color()
             },
             "love_day": {
                 "value": love_days,
-                "color": get_color()
-            },
-            "note_en": {
-                "value": note_en,
                 "color": get_color()
             },
             "note_ch": {
@@ -505,5 +537,5 @@ if __name__ == "__main__":
     note_ch =get_marryme()
     # 公众号推送消息
     for user in users:
-        send_message(user, accessToken, region, sunset1,tempMax1,tempMin1,textDay1,windScaleDay1,uvIndex1, note_ch)
+        send_message(user, accessToken, region, sunset2,tempMax2,tempMin2,textDay2,windScaleDay2,uvIndex2,sunset1,tempMax1,tempMin1,textDay1,windScaleDay1,uvIndex1, note_ch)
     os.system("pause")
