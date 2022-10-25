@@ -1,23 +1,27 @@
 import random
 from time import localtime
-from requests import get, post
-from datetime import datetime, date
-from zhdate import ZhDate
 import sys
 import os
+from requests import get, post
 
 
 
-
-def get_ciba():
-    url = "https://api.tianapi.com/tiangou/index?key=4bd63a1e9f1b96e518d2a9857359a3f1"
+def get_weather(region):
     headers = {
-        'Content-Type': 'application/json',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                       'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
     }
-    r = get(url, headers=headers)
-    note_en = r.json()["newslist"]
-    
-    # note_ch = r.json()["note"]
-    return  note_en
+
+    # 获取地区的location--id
+    location_id = "101230207"
+    weather_url = "https://devapi.qweather.com/v7/weather/3d?location={}&key={}".format(location_id, key)
+    response = get(weather_url, headers=headers).json()
+    # daily.sunset 日落时间
+    sunset = response["now"]["sunset"]
+    print (sunset)
+    # 当前温度
+    temp = response["now"]["temp"] + u"\N{DEGREE SIGN}" + "C"
+    # 风向
+    wind_dir = response["now"]["windDir"]
+
+ 
