@@ -145,7 +145,7 @@ def get_ciba():
  
  
 def send_message(user, accessToken, region, sunset2,tempMax2,tempMin2,textDay2,windScaleDay2,uvIndex2,sunset1,tempMax1,tempMin1,textDay1,windScaleDay1,uvIndex1, note_ch):
-    url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(access_token)
+    url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(accessToken)
     week_list = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
     year = localtime().tm_year
     month = localtime().tm_mon
