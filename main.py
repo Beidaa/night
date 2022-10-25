@@ -38,29 +38,41 @@ def get_weather(region):
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                       'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
     }
-    key = config["weather_key"]
-    region_url = "https://geoapi.qweather.com/v2/city/lookup?location={}&key={}".format(region, key)
-    response = get(region_url, headers=headers).json()
-    if response["code"] == "404":
-        print("推送消息失败，请检查地区名是否有误！")
-        os.system("pause")
-        sys.exit(1)
-    elif response["code"] == "401":
-        print("推送消息失败，请检查和风天气key是否正确！")
-        os.system("pause")
-        sys.exit(1)
-    else:
-        # 获取地区的location--id
-        location_id = response["location"][0]["id"]
-    weather_url = "https://devapi.qweather.com/v7/weather/now?location={}&key={}".format(location_id, key)
+    key="21da10412b9240dba830a492de395b2b"
+    # 获取地区的location--id
+    location_id = "101230207"
+    weather_url = "https://devapi.qweather.com/v7/weather/3d?location={}&key={}".format(location_id, key)
     response = get(weather_url, headers=headers).json()
-    # 天气
-    weather = response["now"]["text"]
-    # 当前温度
-    temp = response["now"]["temp"] + u"\N{DEGREE SIGN}" + "C"
-    # 风向
-    wind_dir = response["now"]["windDir"]
-    return weather, temp, wind_dir
+    # daily.sunset 日落时间
+    sunset = response["daily"][0]["sunset"]
+    print (sunset)
+    # daily.tempMax 预报当天最高温度
+    tempMax=response["daily"][0]["tempMax"]
+#    daily.tempMin  预报当天最低温度
+    tempMin=response["daily"][0]["tempMin"]
+#daily.textDay 预报白天天气状况文字描述
+    textDay=response["daily"][0]["textDay"]
+#daily.windScaleDay 预报白天风力等级
+    windScaleDay=response["daily"][0]["windScaleDay"]
+    #daily.uvIndex 紫外线强度指数
+    uvIndex=response["daily"][0]["uvIndex"]
+
+    #tomorrow
+    sunset1 = response["daily"][1]["sunset"]
+    print (sunset)
+    # daily.tempMax 预报当天最高温度
+    tempMax1=response["daily"][1]["tempMax"]
+#    daily.tempMin  预报当天最低温度
+    tempMin1=response["daily"][1]["tempMin"]
+#daily.textDay 预报白天天气状况文字描述
+    textDay1=response["daily"][1]["textDay"]
+#daily.windScaleDay 预报白天风力等级
+    windScaleDay1=response["daily"][1]["windScaleDay"]
+    #daily.uvIndex 紫外线强度指数
+    uvIndex1=response["daily"][1]["uvIndex"]
+
+
+    return sunset,tempMax,tempMin,textDay,windScaleDay,uvIndex,sunset1,tempMax1,tempMin1,textDay1,windScaleDay1,uvIndex1
  
  
 def get_birthday(birthday, year, today):
@@ -485,12 +497,12 @@ if __name__ == "__main__":
     users = config["user"]
     # 传入地区获取天气信息
     region = config["region"]
-    weather, temp, wind_dir = get_weather(region)
+    sunset,tempMax,tempMin,textDay,windScaleDay,uvIndex,sunset1,tempMax1,tempMin1,textDay1,windScaleDay1,uvIndex1 = get_weather(region)
 
         # 获取词霸每日金句
     note_en = get_ciba()
     note_ch =get_marryme()
     # 公众号推送消息
     for user in users:
-        send_message(user, accessToken, region, weather, temp, wind_dir, note_en, note_ch)
+        send_message(user, accessToken, region, sunset,tempMax,tempMin,textDay,windScaleDay,uvIndex,sunset1,tempMax1,tempMin1,textDay1,windScaleDay1,uvIndex1, note_en, note_ch)
     os.system("pause")
