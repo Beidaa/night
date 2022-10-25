@@ -44,22 +44,22 @@ def get_weather(region):
     weather_url = "https://devapi.qweather.com/v7/weather/3d?location={}&key={}".format(location_id, key)
     response = get(weather_url, headers=headers).json()
     # daily.sunset 日落时间
-    sunset = response["daily"][0]["sunset"]
-    print (sunset)
+    sunset2 = response["daily"][2]["sunset"]
+    print (sunset2)
     # daily.tempMax 预报当天最高温度
-    tempMax=response["daily"][0]["tempMax"]
+    tempMax2=response["daily"][2]["tempMax"]
 #    daily.tempMin  预报当天最低温度
-    tempMin=response["daily"][0]["tempMin"]
+    tempMin2=response["daily"][2]["tempMin"]
 #daily.textDay 预报白天天气状况文字描述
-    textDay=response["daily"][0]["textDay"]
+    textDay2=response["daily"][2]["textDay"]
 #daily.windScaleDay 预报白天风力等级
-    windScaleDay=response["daily"][0]["windScaleDay"]
+    windScaleDay2=response["daily"][2]["windScaleDay"]
     #daily.uvIndex 紫外线强度指数
-    uvIndex=response["daily"][0]["uvIndex"]
+    uvIndex2=response["daily"][2]["uvIndex"]
 
     #tomorrow
     sunset1 = response["daily"][1]["sunset"]
-    print (sunset)
+    print (sunset1)
     # daily.tempMax 预报当天最高温度
     tempMax1=response["daily"][1]["tempMax"]
 #    daily.tempMin  预报当天最低温度
@@ -72,7 +72,8 @@ def get_weather(region):
     uvIndex1=response["daily"][1]["uvIndex"]
 
 
-    return sunset,tempMax,tempMin,textDay,windScaleDay,uvIndex,sunset1,tempMax1,tempMin1,textDay1,windScaleDay1,uvIndex1
+    return sunset2,tempMax2,tempMin2,textDay2,windScaleDay2,uvIndex2,sunset1,tempMax1,tempMin1,textDay1,windScaleDay1,uvIndex1
+
  
  
 def get_birthday(birthday, year, today):
@@ -497,12 +498,12 @@ if __name__ == "__main__":
     users = config["user"]
     # 传入地区获取天气信息
     region = config["region"]
-    sunset,tempMax,tempMin,textDay,windScaleDay,uvIndex,sunset1,tempMax1,tempMin1,textDay1,windScaleDay1,uvIndex1 = get_weather(region)
+    sunset2,tempMax2,tempMin2,textDay2,windScaleDay2,uvIndex2,sunset1,tempMax1,tempMin1,textDay1,windScaleDay1,uvIndex1 = get_weather(region)
 
         # 获取词霸每日金句
     note_en = get_ciba()
     note_ch =get_marryme()
     # 公众号推送消息
     for user in users:
-        send_message(user, accessToken, region, sunset,tempMax,tempMin,textDay,windScaleDay,uvIndex,sunset1,tempMax1,tempMin1,textDay1,windScaleDay1,uvIndex1, note_en, note_ch)
+        send_message(user, accessToken, region, sunset2,tempMax2,tempMin2,textDay2,windScaleDay2,uvIndex2,sunset1,tempMax1,tempMin1,textDay1,windScaleDay1,uvIndex1, note_ch)
     os.system("pause")
