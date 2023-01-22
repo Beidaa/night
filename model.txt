@@ -1,0 +1,25 @@
+{{date.DATA}} 
+
+地区：{{region.DATA}} 
+
+明日天气：{{textDay1.DATA}} 
+
+气温：{{tempMin1.DATA}}~{{tempMax1.DATA}} 
+
+风力：{{windScaleDay1.DATA}} 
+
+紫外线：{{uvIndex1.DATA}} 
+
+后日天气：{{textDay2.DATA}} 
+
+气温：{{tempMin2.DATA}}~{{tempMax2.DATA}} 
+
+风力：{{windScaleDay2.DATA}} 
+
+紫外线：{{uvIndex2.DATA}} 
+
+我们恋爱{{love_day.DATA}}天啦！
+
+ {{birthday1.DATA}} {{birthday2.DATA}} 
+
+每日一句：{{note_ch.DATA}}
